@@ -1,3 +1,14 @@
+const displayValue = document.querySelector('.value')
+const numButtons = document.querySelectorAll('.num-btn')
+
+let currNumber = ''
+let newNumber = ''
+
+numButtons.forEach(button => button.addEventListener("click", () => {
+    displayValue.textContent = appendNumber(button.textContent)
+    console.log(typeof button.textContent)
+}))
+
 function add(a, b) {
     return a + b
 }
@@ -33,4 +44,9 @@ function operate (operator, num1, num2) {
             res = null
     }
     return res
+}
+
+function appendNumber (num) {
+    currNumber += num
+    return currNumber
 }
