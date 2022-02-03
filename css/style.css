@@ -25,12 +25,14 @@ body {
     border-radius: 5px;
     font-weight: bold;
     max-width: 240px;
+    text-align: right;
 }
 
 
 .buttons-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    text-align: center;
 }
 
 button {
@@ -39,7 +41,6 @@ button {
     padding: 10px;
     border-radius: 5px;
     background-color: #C7DDCC;
-    text-align: center;
 }
 
 .big-btn {
@@ -50,8 +51,10 @@ button {
     max-width: 240px;
 }
 
-.input {
-    text-align: right;
+.history {
+    margin-bottom: 5px;
+    color: grey;
+    height: 15px;
 }
 
 footer {

@@ -1,15 +1,21 @@
 const screenInput = document.querySelector('.input')
+const screenHistory = document.querySelector('.history')
 const numButtons = document.querySelectorAll('.num-btn')
 const opButtons = document.querySelectorAll('.op-btn')
 const eqButton = document.getElementById('equal')
 
-let oldNumber = ''
+let oldNumber = '0'
 let newNumber = ''
-let operator = ''
+let newOperator = ''
+let oldOperator = ''
 let opBoolean = false
 
 numButtons.forEach(button => button.addEventListener("click", () => appendNumber(button.textContent)))
-opButtons.forEach(button => button.addEventListener("click", () => setOperator(button)))
+opButtons.forEach(button => button.addEventListener("click", () => {
+    setOperator(button)
+    calculateValue()
+    displayHistory()
+}))
 eqButton.addEventListener("click", () => {
     calculateValue()
 })
@@ -23,21 +29,47 @@ function displayValue (num) {
     screenInput.textContent = num
 }
 
-function setOperator (button) {
-    calculateValue()
-    operator = button.id
+function displayHistory () {
+    let operatorSymbol = ''
+    switch (newOperator) {
+        case "plus":
+            operatorSymbol = "+"
+            break
+        case "minus":
+            operatorSymbol = "-"
+            break
+        case "multiply":
+            operatorSymbol = '×'
+            break
+        case "divide":
+            operatorSymbol = "÷"
+            break
+    }
+    
+    screenHistory.textContent = oldNumber + " " + operatorSymbol
 }
 
-function calculateValue () {
-    if (oldNumber && newNumber) {
-        oldNumber = operate(operator, oldNumber, newNumber)
-        console.log(oldNumber)
+function setOperator (button) {
+    if (oldOperator) {
+        oldOperator = newOperator
     } else {
+        oldOperator = button.id
+    }
+    newOperator = button.id
+}
+
+// Check to see if the first and second numbers are pressed and calculate the immediate value
+function calculateValue () {
+    console.log(oldNumber + " " + newNumber + " " + oldOperator)
+    if (oldNumber && newNumber) {
+        oldNumber = operate(oldOperator, oldNumber, newNumber)
+        displayValue(oldNumber)
+    } else {
+        // First number (oldNumber) is empty
         setOldNumber()
     }
     newNumber = ''
 }
-
 
 // Set oldNumber to newNumber if only oldNumber is empty 
 function setOldNumber () {
@@ -45,8 +77,6 @@ function setOldNumber () {
         oldNumber = newNumber
     }
 }
-
-
 
 function add(a, b) {
     return a + b
@@ -74,6 +104,7 @@ function operate (operator, num1, num2) {
             break
         case "minus":
             res = sub(num1, num2)
+            console.log(res)
             break
         case "multiply":
             res = mult(num1, num2)
@@ -85,8 +116,4 @@ function operate (operator, num1, num2) {
             res = null
     }
     return res
-}
-
-function test () {
-    console.log(currNumber)
 }
