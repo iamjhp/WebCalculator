@@ -24,6 +24,7 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
     font-weight: bold;
+    max-width: 240px;
 }
 
 
@@ -46,9 +47,10 @@ button {
     width: 140px;
     grid-column: span 2;
     margin-bottom: 3px;
+    max-width: 240px;
 }
 
-.value {
+.input {
     text-align: right;
 }
 
