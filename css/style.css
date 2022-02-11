@@ -55,10 +55,15 @@ button {
     margin-bottom: 5px;
     color: grey;
     height: 15px;
+    font-size: 10px;
 }
 
 footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+a {
+    text-decoration: none;
 }
